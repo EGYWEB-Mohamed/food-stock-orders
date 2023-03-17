@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,33 +17,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
+        Schema::disableForeignKeyConstraints();
+        User::truncate();
+        Product::truncate();
+        Ingredient::truncate();
+        Schema::enableForeignKeyConstraints();
         User::factory()
             ->create([
-                'name'     => 'User',
-                'email'    => 'admin@test.com',
+                'name' => 'User',
+                'email' => 'admin@test.com',
                 'password' => Hash::make(123456),
             ]);
 
         $ingredients = [
             [
-                'name'        => 'Beef',
+                'name' => 'Beef',
                 'stock_grams' => '20000',
             ],
             [
-                'name'        => 'Cheese',
+                'name' => 'Cheese',
                 'stock_grams' => '5000',
             ],
             [
-                'name'        => 'Onion',
+                'name' => 'Onion',
                 'stock_grams' => '1000',
             ],
             [
-                'name'        => 'Chicken',
+                'name' => 'Chicken',
                 'stock_grams' => '25000',
             ],
             [
-                'name'        => 'Fries',
+                'name' => 'Fries',
                 'stock_grams' => '15000',
             ],
         ];
@@ -50,24 +55,23 @@ class DatabaseSeeder extends Seeder
 
         $products = [
             [
-                'name'  => 'Burger',
-                'price' => 5
+                'name' => 'Burger',
+                'price' => 5,
             ],
             [
-                'name'  => 'Taco',
-                'price' => 3
+                'name' => 'Taco',
+                'price' => 3,
             ],
             [
-                'name'  => 'Fried Chicken',
-                'price' => 4
+                'name' => 'Fried Chicken',
+                'price' => 4,
             ],
             [
-                'name'  => 'Chicken Crepe',
-                'price' => 6
+                'name' => 'Chicken Crepe',
+                'price' => 6,
             ],
         ];
         Product::insert($products);
-
 
         Product::find(1)->ingredients()->sync([
             1 => ['grams_quantity' => 150],

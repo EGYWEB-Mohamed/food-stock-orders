@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\IngredientResource\Pages;
-use App\Filament\Resources\IngredientResource\RelationManagers;
 use App\Models\Ingredient;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -35,15 +34,15 @@ class IngredientResource extends Resource
             Tables\Columns\TextColumn::make('name'),
             Tables\Columns\TextColumn::make('stock_grams')
                                      ->color('success')
-                                     ->description(fn(Ingredient $record): string => $record->stock_grams / 1000 .' KG',
+                                     ->description(fn (Ingredient $record): string => $record->stock_grams / 1000 .' KG',
                                          position: 'above'),
             Tables\Columns\TextColumn::make('consumed_percentage')
                                      ->color('warning')
-                                     ->description(fn(Ingredient $record
-                                     ): string => ' Total Consumed : '.$record->consumed_grams." ( ".$record->consumed_grams / 1000 ." KG )",
+                                     ->description(fn (Ingredient $record
+                                     ): string => ' Total Consumed : '.$record->consumed_grams.' ( '.$record->consumed_grams / 1000 .' KG )',
                                          position: 'above')
-                                     ->description(fn(Ingredient $record
-                                     ): string => ' Total Remain : '.$record->stock_grams - $record->consumed_grams." ( ".($record->stock_grams - $record->consumed_grams) / 1000 ." KG )")
+                                     ->description(fn (Ingredient $record
+                                     ): string => ' Total Remain : '.$record->stock_grams - $record->consumed_grams.' ( '.($record->stock_grams - $record->consumed_grams) / 1000 .' KG )')
                                      ->label('Available percentage of stock')
                                      ->suffix('%'),
             Tables\Columns\TextColumn::make('products_count')
@@ -74,9 +73,9 @@ class IngredientResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index'  => Pages\ListIngredients::route('/'),
+            'index' => Pages\ListIngredients::route('/'),
             'create' => Pages\CreateIngredient::route('/create'),
-            'edit'   => Pages\EditIngredient::route('/{record}/edit'),
+            'edit' => Pages\EditIngredient::route('/{record}/edit'),
         ];
     }
 }

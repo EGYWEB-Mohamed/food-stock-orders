@@ -14,7 +14,6 @@ class HomePageTest extends TestCase
     {
         $response = $this->get(route('home'));
         $response->assertStatus(200);
-
     }
 
     public function test_is_homepage_has_products()
@@ -25,17 +24,19 @@ class HomePageTest extends TestCase
                  '<h5 class="card-title text-center">Burger</h5>',
                  '<h5 class="card-title text-center">Taco</h5>',
                  '<h5 class="card-title text-center">Fried Chicken</h5>',
-                 '<h5 class="card-title text-center">Chicken Crepe</h5>'
-             ],false);
+                 '<h5 class="card-title text-center">Chicken Crepe</h5>',
+             ], false);
     }
+
     public function test_is_there_login_and_register_url()
     {
         $this->get(route('home'))
-             ->assertSee([route('filament.auth.login'),route('register')]);
+             ->assertSee([route('filament.auth.login'), route('register')]);
     }
+
     public function test_is_auth_required_to_buy_new_product_work()
     {
-        $this->post(route('checkout',1))
+        $this->post(route('checkout', 1))
              ->assertRedirect(route('filament.auth.login'));
     }
 
@@ -46,12 +47,13 @@ class HomePageTest extends TestCase
         $response = $this->actingAs($user)->get(route('filament.auth.login'));
         $response->assertRedirect(route('filament.pages.dashboard'));
     }
+
     public function test_is_there_logout_and_dashboard_url()
     {
         $this->seed();
         $user = User::first();
         $this->actingAs($user)->get(route('home'))
-             ->assertSee([route('filament.auth.logout'),route('filament.pages.dashboard')]);
+             ->assertSee([route('filament.auth.logout'), route('filament.pages.dashboard')]);
     }
 
     public function test_is_user_can_logout()

@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Events\IngredientDecreasesEvent;
 use App\Models\Order;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
@@ -9,14 +10,19 @@ class OrderObserver
 {
     public function creating(Order $order): void
     {
-        $order->reference_number = IdGenerator::generate(['table' => 'orders','field' => 'reference_number', 'length' => 15, 'prefix' => 'O-'. date('ymd')]);
+        $order->reference_number = IdGenerator::generate(['table' => 'orders',
+            'field' => 'reference_number',
+            'length' => 15,
+            'prefix' => 'O-'.date('ymd'),
+        ]);
         $order->cost = $order->product->price;
     }
+
     public function created(Order $order): void
     {
         $order->load(['product']);
         foreach ($order->product->ingredients as $ingredient) {
-            event(new \App\Events\IngredientDecreasesEvent($ingredient));
+            event(new IngredientDecreasesEvent($ingredient, $order));
         }
     }
 

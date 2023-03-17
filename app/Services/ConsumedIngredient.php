@@ -2,27 +2,22 @@
 
 namespace App\Services;
 
-use App\Models\Order;
+use App\Models\IngredientConsume;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 class ConsumedIngredient
 {
-    public function sumConsumed($IngredientID,Carbon $afterCertainDate = null)
+    public function sumConsumed($IngredientID, Carbon $afterCertainDate = null): int
     {
-        return Order::with(['product.ingredients'])
-                    ->when($afterCertainDate,function ($query) use ($afterCertainDate) {
-                        $query->where('created_at','>',$afterCertainDate);
-                    })
-                    ->whereHas('product.ingredients',function (Builder $builder) use ($IngredientID) {
-                        $builder->where('ingredient_id',$IngredientID);
-                    })
-                    ->hasIngredient($IngredientID)
-                    ->get()
-                    ->sum(function ($items) use ($IngredientID) {
-                        return $items->product->ingredients()
-                                              ->where('id',$IngredientID)
-                                              ->first()->pivot->grams_quantity;
-                    });
+        return IngredientConsume::with('product.orders')
+                                ->when($afterCertainDate, function ($query) use ($afterCertainDate) {
+                                    $query->whereHas('product.orders',
+                                        function (Builder $builder) use ($afterCertainDate) {
+                                            $builder->where('created_at', '>=', $afterCertainDate);
+                                        });
+                                })
+                                ->where('ingredient_id', $IngredientID)
+                                ->sum('consumed_grams');
     }
 }

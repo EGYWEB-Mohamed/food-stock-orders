@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
@@ -14,6 +14,7 @@ class Order extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
     public function scopeHasIngredient($query, $ingredient_id)
     {
         return $query->whereHas('product', function ($q) use ($ingredient_id) {
@@ -21,6 +22,11 @@ class Order extends Model
                 $q->where('ingredients.id', $ingredient_id);
             });
         });
+    }
+
+    public function ingredientConsumes(): HasMany
+    {
+        return $this->hasMany(IngredientConsume::class);
     }
 
     public function user(): BelongsTo
