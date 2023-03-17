@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('orders',function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('product_id')->constrained('product')->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
             $table->string('reference_number');
             $table->float('cost');
 
