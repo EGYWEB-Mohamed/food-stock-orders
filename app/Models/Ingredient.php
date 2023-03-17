@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
+use App\Services\ConsumedIngredient;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +15,7 @@ class Ingredient extends Model
     protected $guarded = [];
 
     protected $casts = ['last_stock_update_date' => 'datetime','alert_sent' => 'boolean'];
-    protected $withCount = ['products'];
+
     public function ConsumedPercentage(): Attribute
     {
         return Attribute::get(function () {
@@ -25,19 +25,8 @@ class Ingredient extends Model
 
     public function ConsumedLogic()
     {
-        $IngredientID = $this->id;
-        return Order::with(['product.ingredients'])
-                    ->where('created_at','>',$this->last_stock_update_date)
-                    ->whereHas('product.ingredients',function (Builder $builder) use ($IngredientID) {
-                        $builder->where('ingredient_id',$IngredientID);
-                    })
-                    ->hasIngredient($IngredientID)
-                    ->get()
-                    ->sum(function ($items) use ($IngredientID) {
-                        return $items->product->ingredients()
-                                              ->where('id',$IngredientID)
-                                              ->first()->pivot->grams_quantity;
-                    });
+        return (new ConsumedIngredient())->sumConsumed($this->id,$this->last_stock_update_date);
+
     }
 
     public function ConsumedGrams(): Attribute
