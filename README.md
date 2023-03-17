@@ -85,12 +85,12 @@ This is an example of how to list things you need to Prepare.
     DB_TEST_DATABASE=
     DB_USERNAME=
     DB_PASSWORD=
-    .
+    ....
     MAIL_HOST=
     MAIL_PORT=587
     MAIL_USERNAME=
     MAIL_PASSWORD=
-    .
+    .....
     MERCHANT_MAIL="merchant@test.com"
     LOWEST_STOCK_PERCENTAGE=50
     ```
