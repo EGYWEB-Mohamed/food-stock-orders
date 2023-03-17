@@ -153,8 +153,10 @@ When You Finish Setup the application you can easily run
   ```
   ![img.png](git_images/img.png)
 You Got Green Pass So What you are waiting for 😂
-<hr>
- #### Test Cases Coverage
+
+<br>
+
+ #### Test Cases Coverage:
 ✔️ Is Home Page Work ? <br>
 ✔️ Is Home Page Has Products ?<br>
 ✔️ Is There Auth Links ?<br>
