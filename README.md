@@ -108,6 +108,11 @@ This is an example of how to list things you need to Prepare.
         ```
 - If your using local server don't forget to run `php artisan serv` or you can navigate from localhost correct installation path
 
+- Don't Forget To run queue worker so it's important to deliver the Email Notification 
+    ```ssh
+  php artisan queue:work
+  ```
+
 -   Want To Test The Whole Application and functionality ? <a href="#testing">Easy Jump To This Part</a>
 
 <hr>
