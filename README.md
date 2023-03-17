@@ -1,3 +1,4 @@
+
 <h1 align="center">Foodics Task</h1>
 
 <!-- TABLE OF CONTENTS -->
@@ -18,76 +19,160 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#images">Images</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-![img_1.png](img_1.png)[![Main Image]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
-
+![img_1.png](git_images/img_1.png)
 
 ### Built With
 
-* []()
-* []()
-* []()
-
-
+-   Laravel V10.3.3
+-   Filament V2.17.16
+-   Bootstrap V5.3.0-alpha
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+This is an example of how to list things you need to Prepare.
+
+-   Local Server Or Live Server
+-   PHP Version 8.1+
+-   `Composer` [Download From Here](https://getcomposer.org/download)
+-   npm
+    ```sh
+    npm install npm@latest -g
+    ```
+-   Command Line and I prefer `Git Bash` You Can download it [From Here](https://git-scm.com/downloads)
+
+<hr>
 
 ### Installation
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
+-   Clone the repo
+    ```sh
+    git clone https://github.com/EGYWEB-Mohamed/foodics_task.git
+    ```
+-   Install Required packages With `composer`
+    ```sh
+    composer install
+    ```
+-   Copy .env.example file and rename it with .env
+    ```sh
+      cp .env.example .env
+    ```
+-   Generate Key
+    ```ssh
+    php artisan key:generate
+    ```
+-   Create Two Database
 
+    -   Testing `DB_TEST_DATABASE`
+    -   Live `DB_DATABASE`
 
+-   Fill `.env` File With Important Data
+
+    ```sh
+    DB_DATABASE=
+    DB_TEST_DATABASE=
+    DB_USERNAME=
+    DB_PASSWORD=
+    .
+    MAIL_HOST=
+    MAIL_PORT=587
+    MAIL_USERNAME=
+    MAIL_PASSWORD=
+    .
+    MERCHANT_MAIL="merchant@test.com"
+    LOWEST_STOCK_PERCENTAGE=50
+    ```
+
+    And Don't Forget To Fill SMTP Data To Recive a notification Whenever Any Stock Is Low `You can also specify when you will receive an alert when a certain percentage is reached with LOWEST_STOCK_PERCENTAGE 😉`
+
+-   Then Run To Migrate All Database Also to seed with dummy data
+    ```ssh
+    php artisan migration --seed
+    ```
+    -   Account Credential
+        ```
+        Email : admin@test.com
+        Password :  123456
+        ```
+-   Want To Test The Whole Application and functionality ? <a href="#testing">Easy Jump To This Part</a>
+
+<hr>
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
+In a system that has three main models; Product, Ingredient, and Order.
+A Burger (Product) may have several ingredients:
+- 150g Beef
+- 30g Cheese
+- 20g Onion
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+The system keeps the stock of each of these ingredients stored in the database. You
+can use the following levels for seeding the database:
+- 20kg Beef
+- 5kg Cheese
+- 1kg Onion
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+When a customer makes an order that includes a Burger. The system needs to update the
+stock of each of the ingredients so it reflects the amounts consumed.
+Also when any of the ingredients stock level reaches 50%, the system should send an
+email message to alert the merchant they need to buy more of this ingredient.
 
+<!-- USAGE EXAMPLES -->
+<hr>
 
+## Images
+![img_6.png](git_images/img_6.png)
+![img_2.png](git_images/img_2.png)
+![img_3.png](git_images/img_3.png)
+![img_4.png](git_images/img_4.png)
+![img_5.png](git_images/img_5.png)
 
-<!-- ROADMAP -->
-## Roadmap
+<hr>
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
-
-
-
+## Testing
+When You Finish Setup the application you can easily run
+  ```ssh
+  php artisan test
+  ```
+  ![img.png](git_images/img.png)
+You Got Green Pass So What you are waiting for 😂
+<hr>
+ #### Test Cases Coverage
+✔️ Is Home Page Work ? <br>
+✔️ Is Home Page Has Products ?<br>
+✔️ Is There Auth Links ?<br>
+✔️ Is Auth Required To Buy New Product ?<br>
+✔️ Is User Can Login Successfully ?<br>
+✔️ Is there Logout and Dashboard Link ?<br>
+✔️ Is Dashboard Work ?<br>
+✔️ Is Orders Page Work ?<br>
+✔️ Is Products Page Work ?<br>
+✔️ Is Ingredients Page Work ?<br>
+✔️ Is There Burger Product With its Ingredients Exists?<br>
+️✔️ Is Buy Button Work ?<br>
+✔️ Is Product Ingredients Stock 100% ?<br>
+✔️ Is Order Added To DB ?<br>
+✔️ Is Product Ingredients Decreased ?<br>
+✔️ Is Ingredients Decreased Is Correct ?<br>
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -98,46 +183,8 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
-
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username
