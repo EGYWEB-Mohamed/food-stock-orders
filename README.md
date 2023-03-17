@@ -51,10 +51,6 @@ This is an example of how to list things you need to Prepare.
 -   Local Server Or Live Server
 -   PHP Version 8.1+
 -   `Composer` [Download From Here](https://getcomposer.org/download)
--   npm
-    ```sh
-    npm install npm@latest -g
-    ```
 -   Command Line and I prefer `Git Bash` You Can download it [From Here](https://git-scm.com/downloads)
 
 <hr>
