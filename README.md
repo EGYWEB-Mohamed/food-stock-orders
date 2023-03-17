@@ -106,6 +106,8 @@ This is an example of how to list things you need to Prepare.
         Email : admin@test.com
         Password :  123456
         ```
+- If your using local server don't forget to run `php artisan serv` or you can navigate from localhost correct installation path
+
 -   Want To Test The Whole Application and functionality ? <a href="#testing">Easy Jump To This Part</a>
 
 <hr>
