@@ -19,6 +19,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#digram">Database Digram</a></li>
     <li><a href="#testing">Testing</a></li>
     <li><a href="#images">Images</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -138,6 +139,11 @@ Also when any of the ingredients stock level reaches 50%, the system should send
 email message to alert the merchant they need to buy more of this ingredient.
 
 <!-- USAGE EXAMPLES -->
+<hr>
+
+## Digram
+![img.png](git_images/db.png)
+
 <hr>
 
 ## Images
