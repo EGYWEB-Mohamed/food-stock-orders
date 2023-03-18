@@ -23,7 +23,7 @@ class Ingredient extends Model
         });
     }
 
-    public function ConsumedLogic()
+    public function ConsumedLogic(): int
     {
         return (new ConsumedIngredient())->sumConsumed($this->id, $this->last_stock_update_date);
     }
