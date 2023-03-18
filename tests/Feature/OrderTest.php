@@ -58,8 +58,7 @@ class OrderTest extends TestCase
         $this->assertModelExists($order);
         $orderProductIngredients = $order->product->ingredients;
         foreach ($orderProductIngredients as $ingredient) {
-            $getCurrentStock = (new ConsumedIngredient())->sumConsumed($ingredient->id,
-                $ingredient->last_stock_update_date);
+            $getCurrentStock = (new ConsumedIngredient())->sumConsumed($ingredient->id);
             $this->assertEquals($ingredient->pivot->grams_quantity, $getCurrentStock);
         }
     }
