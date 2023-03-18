@@ -36,15 +36,14 @@ class IngredientResource extends Resource
                                      ->color('success')
                                      ->description(fn (Ingredient $record): string => $record->stock_grams / 1000 .' KG',
                                          position: 'above'),
+
             Tables\Columns\TextColumn::make('consumed_percentage')
                                      ->color('warning')
-                                     ->description(fn (Ingredient $record
-                                     ): string => ' Total Consumed : '.$record->consumed_grams.' ( '.$record->consumed_grams / 1000 .' KG )',
-                                         position: 'above')
-                                     ->description(fn (Ingredient $record
-                                     ): string => ' Total Remain : '.$record->stock_grams - $record->consumed_grams.' ( '.($record->stock_grams - $record->consumed_grams) / 1000 .' KG )')
+                                     ->description(fn (Ingredient $record): string => ' Total Consumed : '.$record->consumed_grams.' ( '.$record->consumed_grams / 1000 .' KG )', position: 'above')
+                                     ->description(fn (Ingredient $record): string => ' Total Remain : '.$record->stock_grams - $record->consumed_grams.' ( '.($record->stock_grams - $record->consumed_grams) / 1000 .' KG )')
                                      ->label('Available percentage of stock')
                                      ->suffix('%'),
+
             Tables\Columns\TextColumn::make('products_count')
                                      ->counts('products')
                                      ->label('Attached Product'),

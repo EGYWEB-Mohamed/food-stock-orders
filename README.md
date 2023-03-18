@@ -152,7 +152,7 @@ email message to alert the merchant they need to buy more of this ingredient.
 ![img_3.png](git_images/img_3.png)
 ![img_4.png](git_images/img_4.png)
 ![img_5.png](git_images/img_5.png)
-
+![img.png](git_images/notification.png)
 <hr>
 
 ## Testing

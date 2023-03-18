@@ -1,9 +1,8 @@
-@php use Artesaos\SEOTools\Facades\SEOTools; @endphp
 @extends('layouts.main')
 @section('content')
     <div class="card">
         <div class="card-header">
-            {{ SEOTools::getTitle(true)}}
+            {{ Artesaos\SEOTools\Facades\SEOTools::getTitle(true)}}
         </div>
         <div class="card-body">
             <div class="row row-cols-1 row-cols-md-5 g-4">

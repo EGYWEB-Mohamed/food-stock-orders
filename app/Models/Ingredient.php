@@ -23,11 +23,6 @@ class Ingredient extends Model
         });
     }
 
-    public function ConsumedLogic(): int
-    {
-        return (new ConsumedIngredient())->sumConsumed($this->id, $this->last_stock_update_date);
-    }
-
     public function ConsumedGrams(): Attribute
     {
         return Attribute::get(function () {
@@ -35,11 +30,9 @@ class Ingredient extends Model
         });
     }
 
-    public function availableStock(): Attribute
+    public function ConsumedLogic(): int
     {
-        return Attribute::get(function () {
-            return 123;
-        });
+        return (new ConsumedIngredient())->sumConsumed($this->id, $this->last_stock_update_date);
     }
 
     public function products(): BelongsToMany

@@ -13,15 +13,13 @@ class LowIngredientMail extends Mailable
 {
     use Queueable,SerializesModels;
 
-
     public function __construct(public Ingredient $ingredient)
     {
-
     }
 
     public function envelope(): Envelope
     {
-        return new Envelope(subject: 'Low Stock For ( '.$this->ingredient->name.' ) ',);
+        return new Envelope(subject: 'Low Stock For ( '.$this->ingredient->name.' ) ');
     }
 
     public function content(): Content

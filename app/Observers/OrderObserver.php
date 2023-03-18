@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Events\IngredientDecreasesEvent;
+use App\Events\IngredientConsumptionsEvent;
 use App\Models\Order;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
@@ -22,7 +22,7 @@ class OrderObserver
     {
         $order->load(['product']);
         foreach ($order->product->ingredients as $ingredient) {
-            event(new IngredientDecreasesEvent($ingredient, $order));
+            event(new IngredientConsumptionsEvent($ingredient, $order));
         }
     }
 

@@ -2,17 +2,17 @@
 
 namespace App\Listeners;
 
-use App\Events\IngredientDecreasesEvent;
+use App\Events\IngredientConsumptionsEvent;
 use App\Mail\LowIngredientMail;
 use Illuminate\Support\Facades\Mail;
 
-class SendNotificationWhenInventoryIsLowListener
+class SetConsumeAndCheckStock
 {
     public function __construct()
     {
     }
 
-    public function handle(IngredientDecreasesEvent $event): void
+    public function handle(IngredientConsumptionsEvent $event): void
     {
         $event->order->ingredientConsumes()->create([
             'ingredient_id' => $event->ingredient->id,

@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Events\IngredientDecreasesEvent;
-use App\Listeners\SendNotificationWhenInventoryIsLowListener;
+use App\Events\IngredientConsumptionsEvent;
+use App\Listeners\SetConsumeAndCheckStock;
 use App\Models\Ingredient;
 use App\Models\Order;
 use App\Observers\IngredientObserver;
@@ -11,7 +11,6 @@ use App\Observers\OrderObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use InventoryDecreases;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,11 +20,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class         => [
+        Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        IngredientDecreasesEvent::class => [
-            SendNotificationWhenInventoryIsLowListener::class,
+        IngredientConsumptionsEvent::class => [
+            SetConsumeAndCheckStock::class,
         ],
     ];
 
