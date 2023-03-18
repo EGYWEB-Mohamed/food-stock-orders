@@ -20,8 +20,13 @@ class OrderObserver
 
     public function created(Order $order): void
     {
-        $order->load(['product']);
         foreach ($order->product->ingredients as $ingredient) {
+            $order->ingredientConsumes()->create([
+                'ingredient_id' => $ingredient->id,
+                'product_id' => $order->product_id,
+                'ingredient_stock_grams' => $ingredient->stock_grams,
+                'consumed_grams' => $order->product->ingredients->find($ingredient->id)->pivot->grams_quantity,
+            ]);
             event(new IngredientConsumptionsEvent($ingredient, $order));
         }
     }
