@@ -1,5 +1,5 @@
 
-<h1 align="center">Foodics Task</h1>
+<h1 align="center">Food Stock Orders</h1>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
