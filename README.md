@@ -60,7 +60,7 @@ This is an example of how to list things you need to Prepare.
 
 -   Clone the repo
     ```sh
-    git clone https://github.com/EGYWEB-Mohamed/foodics_task.git
+    git clone [https://github.com/EGYWEB-Mohamed/foodics_task.git](https://github.com/EGYWEB-Mohamed/restaurants-stock-orders.git)
     ```
 -   Install Required packages With `composer`
     ```sh
